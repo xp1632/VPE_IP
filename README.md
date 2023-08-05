@@ -1,36 +1,14 @@
-# VPE_IP
-Content
-1. High-Level Semantic Image Type
-2. Automatic Low-Level Type Conversation using a knowledge graph
-3. Typical execution prototype instances in the computation notebook including Fiji Kernel
+# VPE_IP: Simplify and Enlarge (?? enhancement)
+## Simplify visual programming by introducing the high-Level Semantic Type and automatic Low-Level Type Conversation using a knowledge graph under the hood
+An example：
+We create semantic Image type and build the knowledge graph compositing of different low-level images data format(ndarray, fiji image, pil image, tensor) and data schema ([B, C, H W] VS [C, H, W] VS [H, W], intensity range [0, 255] vs [0, 1], rgb vs gbr) and conversion rules.
+![image](https://github.com/Max-ChenFei/VPE_IP/assets/28513798/a1ae9628-f355-44fb-bb23-d39875eb1e1b)
+
+Another example is Path, string, relative path, absolute path
+
+## Break the single language execution in the visual programming environment and ??? increase the scope of expression of visual programming???
+Previously, in visual programming there are only generate one language, In order to enlarge the visual programming scope???, we create a mechanism that allows mixing the language execution, that is kernel protocol instances in the computation notebook including Fiji Kernel
+
 
 ## Todo
 - [ ] better topic? image processing, quick and easy pipeline building(type conversion), increasing the pipline scope (support many backends)?
-
-## Data type convertion thoughts:
-
-Data preprocessing between nodes
-
-image low-level expression: ndarray, fiji, pil, tensor
-
-- 4 dimensions
-- batches size
-- Intensity range
-- Vanilla image type format and extend for domain
-
-## Two parts of implementation for data type convertion
-The work for a thesis is mainly defined in two parts:
-
-1. In high level, build jupyter kernel protocol
-		- Binding codes/other libraries API  through jupyterlab to our front-end
-		- there's a mature class already defined in jupyterlab  as tunnel to use other libraries
-		- but we need to know how to use this class
-		- and solving the problems when we use it in different cases
-		
-2. Translating Data
-		-we'll have data from feiji
-		-and we'll have a data graph where several data forms are in the data graph
-
-- we need to find the fastest way to translate date from form red to form green
-- 关于data 转换 这个 可以是我们构建一个data knowledge graph
-- ”知识图谱“ 
