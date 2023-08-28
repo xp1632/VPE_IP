@@ -1,15 +1,17 @@
-# VPE_IP: Simplify and Enlarge (?? enhancement)
-## Seamless Image Data Transitions via a Configurable State Machine
+# ...
 
-An example：
-We create semantic Image type and build the knowledge graph compositing of different low-level images data format(ndarray, fiji image, pil image, tensor) and data schema ([B, C, H W] VS [C, H, W] VS [H, W], intensity range [0, 255] vs [0, 1], rgb vs gbr) and conversion rules.
-![image](https://github.com/Max-ChenFei/VPE_IP/assets/28513798/a1ae9628-f355-44fb-bb23-d39875eb1e1b)
+**Keywords:** Fiji ImageJ software,  Image processing, Visual Programming, Jupyter lab
 
-Another example is Path, string, relative path, absolute path
+Functionality: Embedded Fiji ImageJ functions in visual programming that integrated into jupyterlab, not by Fiji Gui
 
-## Break the single language execution in the visual programming environment and ??? increase the scope of expression of visual programming???
-Previously, in visual programming there are only generate one language, In order to enlarge the visual programming scope???, we create a mechanism that allows mixing the language execution, that is kernel protocol instances in the computation notebook including Fiji Kernel
+## Fiji ImageJ in a code cell in the notebook
+- [ ] test Java code using the [IJave kernel](https://github.com/SpencerPark/IJava)
+- [ ] Figure out Java code from Fiji ImageJ
+- [ ] If not possible, please call the instructions in CommandLine
 
+## Integrated with Visual Programming
+- [ ] Extend the type knowledge graph with the Fiji Image type and finish the transition rules
+- [ ] Execution using multiple kernels in one notebook
 
-## Todo
-- [ ] better topic? image processing, quick and easy pipeline building(type conversion), increasing the pipline scope (support many backends)?
+## (TobeDecide) Fiji Image API parsing
+- [ ] extract Fiji's API and generate node specification
