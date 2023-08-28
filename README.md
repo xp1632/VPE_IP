@@ -5,8 +5,9 @@
 Functionality: Embedded Fiji ImageJ functions in visual programming that integrated into jupyterlab, not by Fiji Gui
 
 ## Fiji ImageJ in a code cell in the notebook
-- [ ] test Java code using the [IJave kernel](https://github.com/SpencerPark/IJava)
+- [ ] test Java code using the [IJave kernel](https://github.com/SpencerPark/IJava), [tutorial](https://saturncloud.io/blog/how-to-use-the-java-kernel-for-jupyter-a-guide-for-data-scientists/)
 - [ ] Figure out Java code from Fiji ImageJ
+- [ ] Java Shell?
 - [ ] If not possible, please call the instructions in CommandLine
 
 ## Integrated with Visual Programming
