@@ -1,0 +1,226 @@
+{
+    "description": "This is package description",
+    "enable": true,
+    "nodes": {
+        "topology_boxCount_BoxCount": {
+            "type": "topology_boxCount_BoxCount",
+            "category": "function",
+            "title": "topology_boxCount_BoxCount",
+            "tooltip": "This is node tooltip",
+            "externalImports": "import imagej\nimport scyjava as sj\nij = imagej.init('sc.fiji:fiji:2.14.0')",
+            "codeGenerator": "function code(inputs, outputs, node, generator) {\n          const code = `#Get input image\\nvp_input_image = ${inputs[1]}\\nprocess_image = vp_input_image.get('value')\\nOp_name = 'topology.boxCount'\\n${outputs[1]}= ij.op().run(Op_name, ij.py.jargs(process_image, None, None, None, None))\\n${outputs[1]} = ij.py.from_java(${outputs[1]})\\n${outputs[1]} = ((${outputs[1]} - ${outputs[1]}.min()) / (${outputs[1]}.max() - ${outputs[1]}.min())* 255).astype('uint8')\\ndef image_info(image):\\n    print(\"--- After Edge Preserve Smoothing ---\")\\n    ij.py.show(image)\\n    print(f\" type: {type(image)}\")\\n    print(f\"dtype: {image.dtype if hasattr(image, 'dtype') else 'N/A'}\")\\n    print(f\"shape: {image.shape}\")\\n    print (\"--------------------------------\")\\nimage_info(${outputs[1]});\\n${outputs[1]} = {\\n  'value': ${outputs[1]},\\n  'dataType': 'numpy.ndarray',\\n  'metadata': {\\n    'colorChannel': 'grayscale',\\n    'channelOrder': 'channelLast',\\n    'isMiniBatched': False,\\n    'intensityRange': '0-255',\\n    'device': 'cpu'\\n  }\\n}\\n${outputs[0]}`;\n          return code;\n        }",
+            "inputs": {
+                "execIn": {
+                    "title": "execIn",
+                    "tooltip": "execIn",
+                    "dataType": "exec",
+                    "showWidget": false,
+                    "showTitle": false
+                },
+                "input_image": {
+                    "title": "process_image",
+                    "dataType": "image",
+                    "defaultValue": {
+                        "dataType": "numpy.ndarray",
+                        "metadata": [
+                            {
+                                "colorChannel": "grayscale",
+                                "isMiniBatched": false,
+                                "channelOrder": "channelLast",
+                                "intensityRange": [
+                                    "0-255"
+                                ],
+                                "device": [
+                                    "cpu"
+                                ]
+                            }
+                        ]
+                    },
+                    "tooltip": "input image."
+                }
+            },
+            "outputs": {
+                "execOut": {
+                    "title": "execOut",
+                    "tooltip": "execOut",
+                    "dataType": "exec",
+                    "showWidget": false,
+                    "showTitle": false
+                },
+                "output_image": {
+                    "title": "image",
+                    "dataType": "image",
+                    "defaultValue": {
+                        "dataType": "numpy.ndarray"
+                    },
+                    "tooltip": "{dataType: numpy.ndarray, value, layout: [chw], colorMode: [rgb, grayscale], intensityRange: 0-255' device: cpu}"
+                }
+            }
+        },
+        "topology_eulerCharacteristic26N_EulerCharacteristic26N": {
+            "type": "topology_eulerCharacteristic26N_EulerCharacteristic26N",
+            "category": "function",
+            "title": "topology_eulerCharacteristic26N_EulerCharacteristic26N",
+            "tooltip": "This is node tooltip",
+            "externalImports": "import imagej\nimport scyjava as sj\nij = imagej.init('sc.fiji:fiji:2.14.0')",
+            "codeGenerator": "function code(inputs, outputs, node, generator) {\n          const code = `#Get input image\\nvp_input_image = ${inputs[1]}\\nprocess_image = vp_input_image.get('value')\\nOp_name = 'topology.eulerCharacteristic26N'\\n${outputs[1]}= ij.op().run(Op_name, ij.py.jargs(None, process_image))\\n${outputs[1]} = ij.py.from_java(${outputs[1]})\\n${outputs[1]} = ((${outputs[1]} - ${outputs[1]}.min()) / (${outputs[1]}.max() - ${outputs[1]}.min())* 255).astype('uint8')\\ndef image_info(image):\\n    print(\"--- After Edge Preserve Smoothing ---\")\\n    ij.py.show(image)\\n    print(f\" type: {type(image)}\")\\n    print(f\"dtype: {image.dtype if hasattr(image, 'dtype') else 'N/A'}\")\\n    print(f\"shape: {image.shape}\")\\n    print (\"--------------------------------\")\\nimage_info(${outputs[1]});\\n${outputs[1]} = {\\n  'value': ${outputs[1]},\\n  'dataType': 'numpy.ndarray',\\n  'metadata': {\\n    'colorChannel': 'grayscale',\\n    'channelOrder': 'channelLast',\\n    'isMiniBatched': False,\\n    'intensityRange': '0-255',\\n    'device': 'cpu'\\n  }\\n}\\n${outputs[0]}`;\n          return code;\n        }",
+            "inputs": {
+                "execIn": {
+                    "title": "execIn",
+                    "tooltip": "execIn",
+                    "dataType": "exec",
+                    "showWidget": false,
+                    "showTitle": false
+                },
+                "input_image": {
+                    "title": "process_image",
+                    "dataType": "image",
+                    "defaultValue": {
+                        "dataType": "numpy.ndarray",
+                        "metadata": [
+                            {
+                                "colorChannel": "grayscale",
+                                "isMiniBatched": false,
+                                "channelOrder": "channelLast",
+                                "intensityRange": [
+                                    "0-255"
+                                ],
+                                "device": [
+                                    "cpu"
+                                ]
+                            }
+                        ]
+                    },
+                    "tooltip": "input image."
+                }
+            },
+            "outputs": {
+                "execOut": {
+                    "title": "execOut",
+                    "tooltip": "execOut",
+                    "dataType": "exec",
+                    "showWidget": false,
+                    "showTitle": false
+                },
+                "output_image": {
+                    "title": "image",
+                    "dataType": "image",
+                    "defaultValue": {
+                        "dataType": "numpy.ndarray"
+                    },
+                    "tooltip": "{dataType: numpy.ndarray, value, layout: [chw], colorMode: [rgb, grayscale], intensityRange: 0-255' device: cpu}"
+                }
+            }
+        },
+        "topology_eulerCharacteristic26NFloating_EulerCharacteristic26NFloating": {
+            "type": "topology_eulerCharacteristic26NFloating_EulerCharacteristic26NFloating",
+            "category": "function",
+            "title": "topology_eulerCharacteristic26NFloating_EulerCharacteristic26NFloating",
+            "tooltip": "This is node tooltip",
+            "externalImports": "import imagej\nimport scyjava as sj\nij = imagej.init('sc.fiji:fiji:2.14.0')",
+            "codeGenerator": "function code(inputs, outputs, node, generator) {\n          const code = `#Get input image\\nvp_input_image = ${inputs[1]}\\nprocess_image = vp_input_image.get('value')\\nOp_name = 'topology.eulerCharacteristic26NFloating'\\n${outputs[1]}= ij.op().run(Op_name, ij.py.jargs(None, process_image))\\n${outputs[1]} = ij.py.from_java(${outputs[1]})\\n${outputs[1]} = ((${outputs[1]} - ${outputs[1]}.min()) / (${outputs[1]}.max() - ${outputs[1]}.min())* 255).astype('uint8')\\ndef image_info(image):\\n    print(\"--- After Edge Preserve Smoothing ---\")\\n    ij.py.show(image)\\n    print(f\" type: {type(image)}\")\\n    print(f\"dtype: {image.dtype if hasattr(image, 'dtype') else 'N/A'}\")\\n    print(f\"shape: {image.shape}\")\\n    print (\"--------------------------------\")\\nimage_info(${outputs[1]});\\n${outputs[1]} = {\\n  'value': ${outputs[1]},\\n  'dataType': 'numpy.ndarray',\\n  'metadata': {\\n    'colorChannel': 'grayscale',\\n    'channelOrder': 'channelLast',\\n    'isMiniBatched': False,\\n    'intensityRange': '0-255',\\n    'device': 'cpu'\\n  }\\n}\\n${outputs[0]}`;\n          return code;\n        }",
+            "inputs": {
+                "execIn": {
+                    "title": "execIn",
+                    "tooltip": "execIn",
+                    "dataType": "exec",
+                    "showWidget": false,
+                    "showTitle": false
+                },
+                "input_image": {
+                    "title": "process_image",
+                    "dataType": "image",
+                    "defaultValue": {
+                        "dataType": "numpy.ndarray",
+                        "metadata": [
+                            {
+                                "colorChannel": "grayscale",
+                                "isMiniBatched": false,
+                                "channelOrder": "channelLast",
+                                "intensityRange": [
+                                    "0-255"
+                                ],
+                                "device": [
+                                    "cpu"
+                                ]
+                            }
+                        ]
+                    },
+                    "tooltip": "input image."
+                }
+            },
+            "outputs": {
+                "execOut": {
+                    "title": "execOut",
+                    "tooltip": "execOut",
+                    "dataType": "exec",
+                    "showWidget": false,
+                    "showTitle": false
+                },
+                "output_image": {
+                    "title": "image",
+                    "dataType": "image",
+                    "defaultValue": {
+                        "dataType": "numpy.ndarray"
+                    },
+                    "tooltip": "{dataType: numpy.ndarray, value, layout: [chw], colorMode: [rgb, grayscale], intensityRange: 0-255' device: cpu}"
+                }
+            }
+        },
+        "topology_eulerCorrection_EulerCorrection": {
+            "type": "topology_eulerCorrection_EulerCorrection",
+            "category": "function",
+            "title": "topology_eulerCorrection_EulerCorrection",
+            "tooltip": "This is node tooltip",
+            "externalImports": "import imagej\nimport scyjava as sj\nij = imagej.init('sc.fiji:fiji:2.14.0')",
+            "codeGenerator": "function code(inputs, outputs, node, generator) {\n          const code = `#Get input image\\nvp_input_image = ${inputs[1]}\\nprocess_image = vp_input_image.get('value')\\nOp_name = 'topology.eulerCorrection'\\n${outputs[1]}= ij.op().run(Op_name, ij.py.jargs(None, process_image))\\n${outputs[1]} = ij.py.from_java(${outputs[1]})\\n${outputs[1]} = ((${outputs[1]} - ${outputs[1]}.min()) / (${outputs[1]}.max() - ${outputs[1]}.min())* 255).astype('uint8')\\ndef image_info(image):\\n    print(\"--- After Edge Preserve Smoothing ---\")\\n    ij.py.show(image)\\n    print(f\" type: {type(image)}\")\\n    print(f\"dtype: {image.dtype if hasattr(image, 'dtype') else 'N/A'}\")\\n    print(f\"shape: {image.shape}\")\\n    print (\"--------------------------------\")\\nimage_info(${outputs[1]});\\n${outputs[1]} = {\\n  'value': ${outputs[1]},\\n  'dataType': 'numpy.ndarray',\\n  'metadata': {\\n    'colorChannel': 'grayscale',\\n    'channelOrder': 'channelLast',\\n    'isMiniBatched': False,\\n    'intensityRange': '0-255',\\n    'device': 'cpu'\\n  }\\n}\\n${outputs[0]}`;\n          return code;\n        }",
+            "inputs": {
+                "execIn": {
+                    "title": "execIn",
+                    "tooltip": "execIn",
+                    "dataType": "exec",
+                    "showWidget": false,
+                    "showTitle": false
+                },
+                "input_image": {
+                    "title": "process_image",
+                    "dataType": "image",
+                    "defaultValue": {
+                        "dataType": "numpy.ndarray",
+                        "metadata": [
+                            {
+                                "colorChannel": "grayscale",
+                                "isMiniBatched": false,
+                                "channelOrder": "channelLast",
+                                "intensityRange": [
+                                    "0-255"
+                                ],
+                                "device": [
+                                    "cpu"
+                                ]
+                            }
+                        ]
+                    },
+                    "tooltip": "input image."
+                }
+            },
+            "outputs": {
+                "execOut": {
+                    "title": "execOut",
+                    "tooltip": "execOut",
+                    "dataType": "exec",
+                    "showWidget": false,
+                    "showTitle": false
+                },
+                "output_image": {
+                    "title": "image",
+                    "dataType": "image",
+                    "defaultValue": {
+                        "dataType": "numpy.ndarray"
+                    },
+                    "tooltip": "{dataType: numpy.ndarray, value, layout: [chw], colorMode: [rgb, grayscale], intensityRange: 0-255' device: cpu}"
+                }
+            }
+        }
+    }
+}

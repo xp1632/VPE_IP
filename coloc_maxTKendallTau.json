@@ -2,13 +2,13 @@
     "description": "This is package description",
     "enable": true,
     "nodes": {
-        "filter_median": {
-            "type": "filter_median",
+        "coloc_maxTKendallTau": {
+            "type": "coloc_maxTKendallTau",
             "category": "function",
-            "title": "filter_median",
+            "title": "coloc_maxTKendallTau",
             "tooltip": "This is node tooltip",
             "externalImports": "import imagej\nimport scyjava as sj\nij = imagej.init('sc.fiji:fiji:2.14.0')",
-            "codeGenerator": "function code(inputs, outputs, node, generator) {\n          const code = `#Get input image\\nvp_input_image = ${inputs[1]}\\nprocess_image = vp_input_image.get('value')\\nOp_name = 'filter.median'\\nHyperSphereShape = sj.jimport(\"net.imglib2.algorithm.neighborhood.HyperSphereShape\")\\njimage = ij.py.to_java(process_image)\\n${outputs[1]} = ij.op().run('create.img',jimage)\\n${outputs[1]}= ij.op().run(Op_name, ij.py.jargs(${outputs[1]}, process_image, HyperSphereShape(${inputs[2]}), None))\\n${outputs[1]} = ij.py.from_java(${outputs[1]})\\n${outputs[1]} = ((${outputs[1]} - ${outputs[1]}.min()) / (${outputs[1]}.max() - ${outputs[1]}.min())* 255).astype('uint8')\\ndef image_info(image):\\n    print(\"--- After Edge Preserve Smoothing ---\")\\n    ij.py.show(image)\\n    print(f\" type: {type(image)}\")\\n    print(f\"dtype: {image.dtype if hasattr(image, 'dtype') else 'N/A'}\")\\n    print(f\"shape: {image.shape}\")\\n    print (\"--------------------------------\")\\nimage_info(${outputs[1]});\\n${outputs[1]} = {\\n  'value': ${outputs[1]},\\n  'dataType': 'numpy.ndarray',\\n  'metadata': {\\n    'colorChannel': 'grayscale',\\n    'channelOrder': 'channelLast',\\n    'isMiniBatched': False,\\n    'intensityRange': '0-255',\\n    'device': 'cpu'\\n  }\\n}\\n${outputs[0]}`;\n          return code;\n        }",
+            "codeGenerator": "function code(inputs, outputs, node, generator) {\n          const code = `#Get input image\\nvp_input_image = ${inputs[1]}\\nprocess_image = vp_input_image.get('value')\\nOp_name = 'coloc.maxTKendallTau'\\n${outputs[1]}= ij.op().run(Op_name, ij.py.jargs(process_image, process_image, None))\\n${outputs[1]} = ij.py.from_java(${outputs[1]})\\n${outputs[1]} = ((${outputs[1]} - ${outputs[1]}.min()) / (${outputs[1]}.max() - ${outputs[1]}.min())* 255).astype('uint8')\\ndef image_info(image):\\n    print(\"--- After Edge Preserve Smoothing ---\")\\n    ij.py.show(image)\\n    print(f\" type: {type(image)}\")\\n    print(f\"dtype: {image.dtype if hasattr(image, 'dtype') else 'N/A'}\")\\n    print(f\"shape: {image.shape}\")\\n    print (\"--------------------------------\")\\nimage_info(${outputs[1]});\\n${outputs[1]} = {\\n  'value': ${outputs[1]},\\n  'dataType': 'numpy.ndarray',\\n  'metadata': {\\n    'colorChannel': 'grayscale',\\n    'channelOrder': 'channelLast',\\n    'isMiniBatched': False,\\n    'intensityRange': '0-255',\\n    'device': 'cpu'\\n  }\\n}\\n${outputs[0]}`;\n          return code;\n        }",
             "inputs": {
                 "execIn": {
                     "title": "execIn",
@@ -37,11 +37,6 @@
                         ]
                     },
                     "tooltip": "input image."
-                },
-                "HyperSphereShape(range)": {
-                    "title": "HyperSphereShape(range)",
-                    "dataType": "integer",
-                    "tooltip": "This is HyperSphereShape(range) tooltip"
                 }
             },
             "outputs": {

@@ -2,13 +2,13 @@
     "description": "This is package description",
     "enable": true,
     "nodes": {
-        "morphology_dilate": {
-            "type": "morphology_dilate",
+        "hog_hog_HistogramOfOrientedGradients2D": {
+            "type": "hog_hog_HistogramOfOrientedGradients2D",
             "category": "function",
-            "title": "morphology_dilate",
+            "title": "hog_hog_HistogramOfOrientedGradients2D",
             "tooltip": "This is node tooltip",
             "externalImports": "import imagej\nimport scyjava as sj\nij = imagej.init('sc.fiji:fiji:2.14.0')",
-            "codeGenerator": "function code(inputs, outputs, node, generator) {\n          const code = `#Get input image\\nvp_input_image = ${inputs[1]}\\n#Get Op Name\\nOp_name = \"morphology.dilate\"\\n#Import java libararies\\nHyperSphereShape = sj.jimport(\"net.imglib2.algorithm.neighborhood.HyperSphereShape\")\\n#Convert input image to Java type\\nprocess_image = vp_input_image.get('value')\\n#Process image by Op\\n${outputs[1]}= ij.op().run(Op_name, ij.py.jargs(None,process_image, HyperSphereShape(${inputs[2]}),None,None))\\n#Normalization to ${inputs[2]} (0,255), uint8 \\n${outputs[1]} = ij.py.from_java(${outputs[1]})\\n${outputs[1]} = ((${outputs[1]} - ${outputs[1]}.min()) / (${outputs[1]}.max() - ${outputs[1]}.min())* 255).astype('uint8')\\n#Display result\\ndef image_info(image):\\n    # A handy function to print details of an image object.\\n    print(\"--- After Edge Preserve Smoothing ---\")\\n    ij.py.show(image)\\n    print(f\" type: {type(image)}\")\\n    print(f\"dtype: {image.dtype if hasattr(image, 'dtype') else 'N/A'}\")\\n    print(f\"shape: {image.shape}\")\\n    print (\"--------------------------------\")\\nimage_info(${outputs[1]});\\n#Prepare output metadata\\n${outputs[1]} = {\\n  'value': ${outputs[1]},\\n  'dataType': 'numpy.ndarray',\\n  'metadata': {\\n    'colorChannel': 'grayscale',\\n    'channelOrder': 'channelLast',\\n    'isMiniBatched': False,\\n    'intensityRange': '0-255',\\n    'device': 'cpu'\\n  }\\n}\\n${outputs[0]}`;\n          return code;\n        }",
+            "codeGenerator": "function code(inputs, outputs, node, generator) {\n          const code = `#Get input image\\nvp_input_image = ${inputs[1]}\\nprocess_image = vp_input_image.get('value')\\nOp_name = 'hog.hog'\\n${outputs[1]}= ij.op().run(Op_name, ij.py.jargs(None, process_image, ${inputs[2]}, ${inputs[2]}))\\n${outputs[1]} = ij.py.from_java(${outputs[1]})\\n${outputs[1]} = ((${outputs[1]} - ${outputs[1]}.min()) / (${outputs[1]}.max() - ${outputs[1]}.min())* 255).astype('uint8')\\ndef image_info(image):\\n    print(\"--- After Edge Preserve Smoothing ---\")\\n    ij.py.show(image)\\n    print(f\" type: {type(image)}\")\\n    print(f\"dtype: {image.dtype if hasattr(image, 'dtype') else 'N/A'}\")\\n    print(f\"shape: {image.shape}\")\\n    print (\"--------------------------------\")\\nimage_info(${outputs[1]});\\n${outputs[1]} = {\\n  'value': ${outputs[1]},\\n  'dataType': 'numpy.ndarray',\\n  'metadata': {\\n    'colorChannel': 'grayscale',\\n    'channelOrder': 'channelLast',\\n    'isMiniBatched': False,\\n    'intensityRange': '0-255',\\n    'device': 'cpu'\\n  }\\n}\\n${outputs[0]}`;\n          return code;\n        }",
             "inputs": {
                 "execIn": {
                     "title": "execIn",
@@ -38,10 +38,10 @@
                     },
                     "tooltip": "input image."
                 },
-                "HyperSphereShape(range)": {
-                    "title": "HyperSphereShape(range)",
+                "int_para": {
+                    "title": "int_para",
                     "dataType": "integer",
-                    "tooltip": "This is HyperSphereShape(range) tooltip"
+                    "tooltip": "This is int_para tooltip"
                 }
             },
             "outputs": {
