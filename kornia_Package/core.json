@@ -1,0 +1,176 @@
+{
+    "description": "This is package description",
+    "enable": true,
+    "nodes": {
+        "normalize": {
+            "type": "normalize",
+            "category": "function",
+            "title": "normalize",
+            "tooltip": "This is node tooltip",
+            "externalImports": "import torch\nfrom torch.nn.functional import normalize\nimport torch\nimport torchvision.transforms as transforms\nfrom PIL import Image\nimport matplotlib.pyplot as plt",
+            "codeGenerator": "function code(inputs, outputs, node, generator) {\n          const code = `#Get input image\\nvp_input_image = ${inputs[1]}\\ninput = vp_input_image.get('value')\\n${outputs[1]} = normalize(input)\\ndef image_info(image):\\n    print(\"--- After normalize ---\")\\n    # Remove the batch dimension and convert the tensor to an image\\n    image = transforms.ToPILImage()(image.squeeze(0))\\n    # Display the image\\n    plt.imshow(image)\\n    plt.axis('off')\\n    plt.show()\\n    print (\"--------------------------------\")\\nimage_info(${outputs[1]});\\n${outputs[1]} = {\\n  'value': ${outputs[1]},\\n  'dataType': 'torch.Tensor',\\n  'metadata': {\\n    'colorChannel': 'rgb',\\n    'channelOrder': 'channelLast',\\n    'isMiniBatched': False,\\n    'intensityRange': '0-255',\\n    'device': 'cpu'\\n  }\\n}\\n${outputs[0]}`;\n          return code;\n        }",
+            "inputs": {
+                "execIn": {
+                    "title": "execIn",
+                    "tooltip": "execIn",
+                    "dataType": "exec",
+                    "showWidget": false,
+                    "showTitle": false
+                },
+                "input_image": {
+                    "title": "image",
+                    "dataType": "image",
+                    "defaultValue": {
+                        "dataType": "torch.tensor",
+                        "metadata": [
+                            {
+                                "colorChannel": "rgb",
+                                "isMiniBatched": false,
+                                "channelOrder": "channelLast",
+                                "intensityRange": [
+                                    "0-255"
+                                ],
+                                "device": [
+                                    "cpu"
+                                ]
+                            }
+                        ]
+                    },
+                    "tooltip": "input image."
+                }
+            },
+            "outputs": {
+                "execOut": {
+                    "title": "execOut",
+                    "tooltip": "execOut",
+                    "dataType": "exec",
+                    "showWidget": false,
+                    "showTitle": false
+                },
+                "output_image": {
+                    "title": "image",
+                    "dataType": "image",
+                    "defaultValue": {
+                        "dataType": "torch.tensor"
+                    },
+                    "tooltip": "{dataType: torch.tensor, value, layout: [chw], colorMode: [rgb, grayscale], intensityRange: 0-255' device: cpu}"
+                }
+            }
+        },
+        "pad": {
+            "type": "pad",
+            "category": "function",
+            "title": "pad",
+            "tooltip": "This is node tooltip",
+            "externalImports": "import torch\nfrom torch.nn.functional import pad\nimport torch\nimport torchvision.transforms as transforms\nfrom PIL import Image\nimport matplotlib.pyplot as plt",
+            "codeGenerator": "function code(inputs, outputs, node, generator) {\n          const code = `#Get input image\\nvp_input_image = ${inputs[1]}\\ninput = vp_input_image.get('value')\\n${outputs[1]} = ${inputs[2]}(input, ${inputs[2]})\\ndef image_info(image):\\n    print(\"--- After ${inputs[2]} ---\")\\n    # Remove the batch dimension and convert the tensor to an image\\n    image = transforms.ToPILImage()(image.squeeze(0))\\n    # Display the image\\n    plt.imshow(image)\\n    plt.axis('off')\\n    plt.show()\\n    print (\"--------------------------------\")\\nimage_info(${outputs[1]});\\n${outputs[1]} = {\\n  'value': ${outputs[1]},\\n  'dataType': 'torch.Tensor',\\n  'metadata': {\\n    'colorChannel': 'rgb',\\n    'channelOrder': 'channelLast',\\n    'isMiniBatched': False,\\n    'intensityRange': '0-255',\\n    'device': 'cpu'\\n  }\\n}\\n${outputs[0]}`;\n          return code;\n        }",
+            "inputs": {
+                "execIn": {
+                    "title": "execIn",
+                    "tooltip": "execIn",
+                    "dataType": "exec",
+                    "showWidget": false,
+                    "showTitle": false
+                },
+                "input_image": {
+                    "title": "image",
+                    "dataType": "image",
+                    "defaultValue": {
+                        "dataType": "torch.tensor",
+                        "metadata": [
+                            {
+                                "colorChannel": "rgb",
+                                "isMiniBatched": false,
+                                "channelOrder": "channelLast",
+                                "intensityRange": [
+                                    "0-255"
+                                ],
+                                "device": [
+                                    "cpu"
+                                ]
+                            }
+                        ]
+                    },
+                    "tooltip": "input image."
+                },
+                "pad": {
+                    "title": "pad",
+                    "dataType": "typing.List[int]",
+                    "tooltip": "This is pad tooltip"
+                }
+            },
+            "outputs": {
+                "execOut": {
+                    "title": "execOut",
+                    "tooltip": "execOut",
+                    "dataType": "exec",
+                    "showWidget": false,
+                    "showTitle": false
+                },
+                "output_image": {
+                    "title": "image",
+                    "dataType": "image",
+                    "defaultValue": {
+                        "dataType": "torch.tensor"
+                    },
+                    "tooltip": "{dataType: torch.tensor, value, layout: [chw], colorMode: [rgb, grayscale], intensityRange: 0-255' device: cpu}"
+                }
+            }
+        },
+        "softmax": {
+            "type": "softmax",
+            "category": "function",
+            "title": "softmax",
+            "tooltip": "This is node tooltip",
+            "externalImports": "import torch\nfrom torch.nn.functional import softmax\nimport torch\nimport torchvision.transforms as transforms\nfrom PIL import Image\nimport matplotlib.pyplot as plt",
+            "codeGenerator": "function code(inputs, outputs, node, generator) {\n          const code = `#Get input image\\nvp_input_image = ${inputs[1]}\\ninput = vp_input_image.get('value')\\n${outputs[1]} = softmax(input)\\ndef image_info(image):\\n    print(\"--- After softmax ---\")\\n    # Remove the batch dimension and convert the tensor to an image\\n    image = transforms.ToPILImage()(image.squeeze(0))\\n    # Display the image\\n    plt.imshow(image)\\n    plt.axis('off')\\n    plt.show()\\n    print (\"--------------------------------\")\\nimage_info(${outputs[1]});\\n${outputs[1]} = {\\n  'value': ${outputs[1]},\\n  'dataType': 'torch.Tensor',\\n  'metadata': {\\n    'colorChannel': 'rgb',\\n    'channelOrder': 'channelLast',\\n    'isMiniBatched': False,\\n    'intensityRange': '0-255',\\n    'device': 'cpu'\\n  }\\n}\\n${outputs[0]}`;\n          return code;\n        }",
+            "inputs": {
+                "execIn": {
+                    "title": "execIn",
+                    "tooltip": "execIn",
+                    "dataType": "exec",
+                    "showWidget": false,
+                    "showTitle": false
+                },
+                "input_image": {
+                    "title": "image",
+                    "dataType": "image",
+                    "defaultValue": {
+                        "dataType": "torch.tensor",
+                        "metadata": [
+                            {
+                                "colorChannel": "rgb",
+                                "isMiniBatched": false,
+                                "channelOrder": "channelLast",
+                                "intensityRange": [
+                                    "0-255"
+                                ],
+                                "device": [
+                                    "cpu"
+                                ]
+                            }
+                        ]
+                    },
+                    "tooltip": "input image."
+                }
+            },
+            "outputs": {
+                "execOut": {
+                    "title": "execOut",
+                    "tooltip": "execOut",
+                    "dataType": "exec",
+                    "showWidget": false,
+                    "showTitle": false
+                },
+                "output_image": {
+                    "title": "image",
+                    "dataType": "image",
+                    "defaultValue": {
+                        "dataType": "torch.tensor"
+                    },
+                    "tooltip": "{dataType: torch.tensor, value, layout: [chw], colorMode: [rgb, grayscale], intensityRange: 0-255' device: cpu}"
+                }
+            }
+        }
+    }
+}
